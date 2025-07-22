@@ -297,17 +297,17 @@ async function loadCachedCredentials(client: OAuth2Client): Promise<boolean> {
     const creds = await fs.readFile(keyFile, 'utf-8');
     client.setCredentials(JSON.parse(creds));
 
-    // This will verify locally that the credentials look good.
-    const { token, res } = await client.getAccessToken();
+    // // This will verify locally that the credentials look good.
+    // const { token, res } = await client.getAccessToken();
 
-    console.log(res?.statusText)
+    // console.log(res?.statusText)
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
-    // This will check with the server to see if it hasn't been revoked.
-    await client.getTokenInfo(token);
+    // // This will check with the server to see if it hasn't been revoked.
+    // await client.getTokenInfo(token);
 
     return true;
   } catch (_) {
