@@ -291,11 +291,17 @@ async function loadCachedCredentials(client: OAuth2Client): Promise<boolean> {
     const keyFile =
       process.env.GOOGLE_APPLICATION_CREDENTIALS || getCachedCredentialPath();
 
+    console.log('BANANA')
+    console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+
     const creds = await fs.readFile(keyFile, 'utf-8');
     client.setCredentials(JSON.parse(creds));
 
     // This will verify locally that the credentials look good.
-    const { token } = await client.getAccessToken();
+    const { token, res } = await client.getAccessToken();
+
+    console.log(res?.statusText)
+
     if (!token) {
       return false;
     }
